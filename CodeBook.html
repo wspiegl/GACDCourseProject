@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>GACDCourseProject - CodeBook for tidy1.csv and tidyMean.csv</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h1>GACDCourseProject - CodeBook for tidy1.csv and tidyMean.csv</h1>
+
+<p>According the information on the initial data set, tidy1 and tidyMean includes columns for subject, activity and all mean and std features
+tidyMean is a reshaped (melt and dcast) from tidy1 with averaged values per activity and subject</p>
+
+<h4>feature columns</h4>
+
+<p><em>f</em> denotes a feature in frequenzy domain</p>
+
+<p><em>t</em> denotes a feature in time domain</p>
+
+<p>[1] &ldquo;tBodyAcc.mean.X&rdquo;                    &ldquo;tBodyAcc.mean.Y&rdquo;<br/>
+ [3] &ldquo;tBodyAcc.mean.Z&rdquo;                    &ldquo;tBodyAcc.std.X&rdquo;<br/>
+ [5] &ldquo;tBodyAcc.std.Y&rdquo;                     &ldquo;tBodyAcc.std.Z&rdquo;<br/>
+ [7] &ldquo;tGravityAcc.mean.X&rdquo;                 &ldquo;tGravityAcc.mean.Y&rdquo;<br/>
+ [9] &ldquo;tGravityAcc.mean.Z&rdquo;                 &ldquo;tGravityAcc.std.X&rdquo;<br/>
+[11] &ldquo;tGravityAcc.std.Y&rdquo;                  &ldquo;tGravityAcc.std.Z&rdquo;<br/>
+[13] &ldquo;tBodyAccJerk.mean.X&rdquo;                &ldquo;tBodyAccJerk.mean.Y&rdquo;<br/>
+[15] &ldquo;tBodyAccJerk.mean.Z&rdquo;                &ldquo;tBodyAccJerk.std.X&rdquo;<br/>
+[17] &ldquo;tBodyAccJerk.std.Y&rdquo;                 &ldquo;tBodyAccJerk.std.Z&rdquo;<br/>
+[19] &ldquo;tBodyGyro.mean.X&rdquo;                   &ldquo;tBodyGyro.mean.Y&rdquo;<br/>
+[21] &ldquo;tBodyGyro.mean.Z&rdquo;                   &ldquo;tBodyGyro.std.X&rdquo;<br/>
+[23] &ldquo;tBodyGyro.std.Y&rdquo;                    &ldquo;tBodyGyro.std.Z&rdquo;<br/>
+[25] &ldquo;tBodyGyroJerk.mean.X&rdquo;               &ldquo;tBodyGyroJerk.mean.Y&rdquo;<br/>
+[27] &ldquo;tBodyGyroJerk.mean.Z&rdquo;               &ldquo;tBodyGyroJerk.std.X&rdquo;<br/>
+[29] &ldquo;tBodyGyroJerk.std.Y&rdquo;                &ldquo;tBodyGyroJerk.std.Z&rdquo;<br/>
+[31] &ldquo;tBodyAccMag.mean&rdquo;                   &ldquo;tBodyAccMag.std&rdquo;<br/>
+[33] &ldquo;tGravityAccMag.mean&rdquo;                &ldquo;tGravityAccMag.std&rdquo;<br/>
+[35] &ldquo;tBodyAccJerkMag.mean&rdquo;               &ldquo;tBodyAccJerkMag.std&rdquo;<br/>
+[37] &ldquo;tBodyGyroMag.mean&rdquo;                  &ldquo;tBodyGyroMag.std&rdquo;<br/>
+[39] &ldquo;tBodyGyroJerkMag.mean&rdquo;              &ldquo;tBodyGyroJerkMag.std&rdquo;<br/>
+[41] &ldquo;fBodyAcc.mean.X&rdquo;                    &ldquo;fBodyAcc.mean.Y&rdquo;<br/>
+[43] &ldquo;fBodyAcc.mean.Z&rdquo;                    &ldquo;fBodyAcc.std.X&rdquo;<br/>
+[45] &ldquo;fBodyAcc.std.Y&rdquo;                     &ldquo;fBodyAcc.std.Z&rdquo;<br/>
+[47] &ldquo;fBodyAcc.meanFreq.X&rdquo;                &ldquo;fBodyAcc.meanFreq.Y&rdquo;<br/>
+[49] &ldquo;fBodyAcc.meanFreq.Z&rdquo;                &ldquo;fBodyAccJerk.mean.X&rdquo;<br/>
+[51] &ldquo;fBodyAccJerk.mean.Y&rdquo;                &ldquo;fBodyAccJerk.mean.Z&rdquo;<br/>
+[53] &ldquo;fBodyAccJerk.std.X&rdquo;                 &ldquo;fBodyAccJerk.std.Y&rdquo;<br/>
+[55] &ldquo;fBodyAccJerk.std.Z&rdquo;                 &ldquo;fBodyAccJerk.meanFreq.X&rdquo;<br/>
+[57] &ldquo;fBodyAccJerk.meanFreq.Y&rdquo;            &ldquo;fBodyAccJerk.meanFreq.Z&rdquo;<br/>
+[59] &ldquo;fBodyGyro.mean.X&rdquo;                   &ldquo;fBodyGyro.mean.Y&rdquo;<br/>
+[61] &ldquo;fBodyGyro.mean.Z&rdquo;                   &ldquo;fBodyGyro.std.X&rdquo;<br/>
+[63] &ldquo;fBodyGyro.std.Y&rdquo;                    &ldquo;fBodyGyro.std.Z&rdquo;<br/>
+[65] &ldquo;fBodyGyro.meanFreq.X&rdquo;               &ldquo;fBodyGyro.meanFreq.Y&rdquo;<br/>
+[67] &ldquo;fBodyGyro.meanFreq.Z&rdquo;               &ldquo;fBodyAccMag.mean&rdquo;<br/>
+[69] &ldquo;fBodyAccMag.std&rdquo;                    &ldquo;fBodyAccMag.meanFreq&rdquo;<br/>
+[71] &ldquo;fBodyBodyAccJerkMag.mean&rdquo;           &ldquo;fBodyBodyAccJerkMag.std&rdquo;<br/>
+[73] &ldquo;fBodyBodyAccJerkMag.meanFreq&rdquo;       &ldquo;fBodyBodyGyroMag.mean&rdquo;<br/>
+[75] &ldquo;fBodyBodyGyroMag.std&rdquo;               &ldquo;fBodyBodyGyroMag.meanFreq&rdquo;<br/>
+[77] &ldquo;fBodyBodyGyroJerkMag.mean&rdquo;          &ldquo;fBodyBodyGyroJerkMag.std&rdquo;<br/>
+[79] &ldquo;fBodyBodyGyroJerkMag.meanFreq&rdquo;      &ldquo;angletBodyAccMean.gravity&rdquo;<br/>
+[81] &ldquo;angletBodyAccJerkMean.gravityMean&rdquo;  &ldquo;angletBodyGyroMean.gravityMean&rdquo;<br/>
+[83] &ldquo;angletBodyGyroJerkMean.gravityMean&rdquo; &ldquo;angleX.gravityMean&rdquo;<br/>
+[85] &ldquo;angleY.gravityMean&rdquo;                 &ldquo;angleZ.gravityMean&rdquo;</p>
+
+</body>
+
+</html>
+
